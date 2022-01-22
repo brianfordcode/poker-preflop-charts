@@ -1,34 +1,80 @@
 <template>
 
-<h2
-  style="margin: 20px 0 20px 0;
-         text-align: center;"
->
-Preflop 6max Cash 100bb NLHE
-</h2>
+    <div class="main-container">
 
-<div
-  class="title"
-  style="padding:5px;
-         margin-bottom:5px"
->
-{{ this.completeSituation ? this.completeSituation : 'Choose a Situation Below' }}
-</div>
+    <!-- <div>{{ this.completeSituation === "BB vs HJ RFI" ? true : false }}</div> -->
 
-<chart/>
+    <div class="chart-btns">
+    <!-- RFI-POS  -->
+        <div class="buttons-container">
+        <span
+            class="title buttons"
+            style="font-size: 15px;"
+        >
+        RFI / POSITION
+        </span>
+        <span
+            class="buttons"
+            :style="[this.selectedPosition === position ? 'background-color: rgb(12, 12, 167)' : '']"
+            style="font-size: 30px;"
+            @click="choosePosition(position)"
+            v-for="(position) in RFIPOS"
+            :key="position"
+        >
+        {{ position }}
+        </span>
+        </div>
 
-<buttons/>
+    <!-- vs RFI -->
+        <div class="buttons-container">
+        <span
+            class="title buttons"
+            style="font-size: 24px;"
+            v-if="this.vsrfi.length > 0"
+        >
+        vs RFI
+        </span>
+        <span
+            class="buttons"
+            :style="[this.selectedSituation === vsrfi ? 'background-color: rgb(12, 12, 167)' : '']"
+            style="font-size: 18px; "
+            @click="chooseSituation(vsrfi)"
+            v-for="vsrfi in vsrfi"
+            :key="vsrfi"
+        >{{ vsrfi }}</span>
+        </div>
+
+
+    <!-- vs3bet -->
+        <div class="buttons-container">
+        <span
+            class="title buttons"
+            style="font-size: 24px;"
+            v-if="this.vs3bet.length > 0"
+        >
+        vs 3bet
+        </span>
+        <span
+            class="buttons"
+            :style="[this.selectedSituation === vs3bet ? 'background-color: rgb(12, 12, 167)' : '']"
+            style="font-size: 16px;"
+            @click="chooseSituation(vs3bet)"
+            v-for="vs3bet in vs3bet"
+            :key="vs3bet"
+        >{{ vs3bet }}</span>
+        </div>
+    </div>
+
+    </div>
 
 </template>
 
 <script>
-import chart from "./components/chart.vue"
-import buttons from "./components/buttons.vue"
-
+import chart from "./chart.vue"
 
 export default {
   name: "App",
-  components: { chart, buttons },
+  components: { chart },
   data() {
     return {
       selectedPosition: '',
@@ -85,22 +131,6 @@ export default {
 
 };
 </script>
-
-<style>
-  * {
-    padding: 0;
-    margin: 0;
-  }
-
-  #app {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    user-select: none;
-  }
-</style>
 
 <style scoped>
 
