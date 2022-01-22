@@ -21,6 +21,11 @@
 <script>
 
 export default {
+    props: {
+        situation: {
+            type: String
+        }
+    },
     data() {
         return {
             cards: "AKQJT98765432".split('') //["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
@@ -32,18 +37,15 @@ export default {
             const suited = i1 < i2 ? 's' : 'o' && card1 === card2 ? '' : 'o'
             return `${holeCards}${suited}`
         }
+    },
+    watch: {
+        situation() {
+            // console.log(this.situation)
+            if (this.situation === "LJ RFI") {
+                console.log('lj rfi')
+            }
+        }
     }
-    // computed: {
-    //     makeChart() {
-    //         cards.forEach((card1, i1) => {
-    //             let row = ''
-    //             cards.forEach((card2, i2) => {
-    //                 row += `${card1} - ${card2} ${i1 < i2 ? 'a' : 'b'},`
-    //             })
-    //         return row
-    //         })
-    //     }
-    // }
 }
 </script>
 

@@ -12,13 +12,13 @@ Preflop 6max Cash 100bb NLHE
   style="padding:5px;
          margin-bottom:5px"
 >
-{{ this.completeSituation ? this.completeSituation : 'Choose a Situation Below' }}
+{{ this.situation ? this.situation : 'Choose a Situation Below' }}
 
 </div>
 
-<chart/>
+<chart :situation="situation"/>
 
-<buttons/>
+<buttons @change="handleSituation"/>
 
 </template>
 
@@ -30,6 +30,17 @@ import buttons from "./components/buttons.vue"
 export default {
   name: "App",
   components: { chart, buttons },
+  data() {
+    return {
+      situation: ''
+    }
+  },
+  methods: {
+    handleSituation(situation) {
+      this.situation = situation
+    // console.log(situation)
+    }
+  }
 };
 </script>
 

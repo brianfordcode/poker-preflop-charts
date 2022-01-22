@@ -1,6 +1,7 @@
 <template>
 
     <div class="main-container">
+        {{completeSituation}}
 
     <!-- <div>{{ this.completeSituation === "BB vs HJ RFI" ? true : false }}</div> -->
 
@@ -70,16 +71,12 @@
 </template>
 
 <script>
-import chart from "./chart.vue"
 
 export default {
-  name: "App",
-  components: { chart },
   data() {
     return {
       selectedPosition: '',
       selectedSituation: '',
-      completeSituation: '',
       RFIPOS: ["LJ","HJ","CO","BTN","SB","BB",],
       vsrfi: [],
       vs3bet: []
@@ -89,8 +86,7 @@ export default {
     choosePosition(position) {
       
       this.selectedPosition = position;
-      this.selectedSituation = null;
-      this.completeSituation = position + " RFI";
+      this.selectedSituation = 'RFI';
 
       // LJ
       if (this.selectedPosition === "LJ") {
@@ -125,8 +121,17 @@ export default {
     },
     chooseSituation(situation) {
       this.selectedSituation = situation
-      this.completeSituation = this.selectedPosition + ' ' + situation;
     }
+  },
+  computed: {
+      completeSituation() {
+          return `${this.selectedPosition} ${this.selectedSituation}`
+      }
+  },
+  watch: {
+      completeSituation() {
+          this.$emit('change', this.completeSituation)
+      }
   }
 
 };
