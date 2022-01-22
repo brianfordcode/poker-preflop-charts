@@ -16,12 +16,13 @@
     RFI / POSITION
     </span>
     <span
+      :style="[this.selectedPosition === position ? 'background-color: rgb(12, 12, 167)' : '']"
       style="font-size: 30px;"
-      @click="handleClick(pos, index)"
-      v-for="(pos, index) in RFIPOS"
-      :key="pos"
+      @click="choosePosition(position, index)"
+      v-for="(position, index) in RFIPOS"
+      :key="position"
     >
-    {{ pos }}
+    {{ position }}
     </span>
   </div>
 
@@ -35,8 +36,9 @@
     vs RFI
     </span>
     <span
+      :style="[this.selectedSituation === vsrfi ? 'background-color: rgb(12, 12, 167)' : '']"
       style="font-size: 18px; "
-      @click="handleClick(vsrfi, index)"
+      @click="chooseSituation(vsrfi, index)"
       v-for="vsrfi in vsrfi"
       :key="vsrfi"
     >{{ vsrfi }}</span>
@@ -53,8 +55,9 @@
     vs 3bet
     </span>
     <span
+      :style="[this.selectedSituation === vs3bet ? 'background-color: rgb(12, 12, 167)' : '']"
       style="font-size: 16px;"
-      @click="handleClick(vs3bet, index)"
+      @click="chooseSituation(vs3bet, index)"
       v-for="vs3bet in vs3bet"
       :key="vs3bet"
     >{{ vs3bet }}</span>
@@ -71,55 +74,60 @@ import rfiLJ from "./components/rfi-lj.vue"
 
 export default {
   name: "App",
-  components: { chart, rfiLJ
-  },
+  components: { chart, rfiLJ },
   data() {
     return {
-      selected: null,
+      selectedPosition: '',
+      selectedSituation: '',
       RFIPOS: ["LJ","HJ","CO","BTN","SB","BB",],
       vsrfi: [],
       vs3bet: []
     }
   },
   methods: {
-    handleClick(val, index) {
-
-      // "vs HJ 3bet","vs CO 3bet","vs BTN 3bet","vs SB 3bet","vs BB 3bet"
-
-      this.selected = val
+    choosePosition(position, index) {
+      
+      this.selectedPosition = position;
+      this.selectedSituation = null;
 
       // LJ
-      if (this.selected === "LJ") {
+      if (this.selectedPosition === "LJ") {
         this.vsrfi = [];
         this.vs3bet = ["vs HJ 3bet"]
       }
       // HJ
-      if (this.selected === "HJ") {
+      if (this.selectedPosition === "HJ") {
         this.vsrfi = ['vs LJ RFI'];
         this.vs3bet = ["vs CO 3bet","vs BTN 3bet","vs SB 3bet","vs BB 3bet"]
       }
       // CO
-      if (this.selected === "CO") {
+      if (this.selectedPosition === "CO") {
         this.vsrfi = ['vs LJ RFI','vs HJ RFI']
         this.vs3bet = ["vs BTN/SB 3bet","vs BB 3bet"]
       }
       // BTN
-      if (this.selected === "BTN") {
+      if (this.selectedPosition === "BTN") {
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI"]
         this.vs3bet = ["vs BB/SB 3bet"]
       }
       // SB
-      if (this.selected === "SB") {
+      if (this.selectedPosition === "SB") {
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI", "vs BTN RFI"]
         this.vs3bet = ["vs BB 3bet"]
       }
       // BB
-      if (this.selected === "BB") {
+      if (this.selectedPosition === "BB") {
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI","vs BTN RFI","vs SB Limp","vs SB Raise",]
         this.vs3bet = []
       }
 
-      console.log(this.selected)
+      console.log(this.selectedPosition, "RFI")
+    },
+    chooseSituation(situation, index) {
+
+      this.selectedSituation = situation
+
+      console.log(this.selectedPosition, this.selectedSituation)
     }
   }
 
