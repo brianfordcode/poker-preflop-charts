@@ -13,6 +13,7 @@ Preflop 6max Cash 100bb NLHE
          margin-bottom:5px"
 >
 {{ this.completeSituation ? this.completeSituation : 'Choose a Situation Below' }}
+
 </div>
 
 <chart/>
@@ -29,60 +30,6 @@ import buttons from "./components/buttons.vue"
 export default {
   name: "App",
   components: { chart, buttons },
-  data() {
-    return {
-      selectedPosition: '',
-      selectedSituation: '',
-      completeSituation: '',
-      RFIPOS: ["LJ","HJ","CO","BTN","SB","BB",],
-      vsrfi: [],
-      vs3bet: []
-    }
-  },
-  methods: {
-    choosePosition(position) {
-      
-      this.selectedPosition = position;
-      this.selectedSituation = null;
-      this.completeSituation = position + " RFI";
-
-      // LJ
-      if (this.selectedPosition === "LJ") {
-        this.vsrfi = [];
-        this.vs3bet = ["vs HJ 3bet"]
-      }
-      // HJ
-      if (this.selectedPosition === "HJ") {
-        this.vsrfi = ['vs LJ RFI'];
-        this.vs3bet = ["vs CO 3bet","vs BTN 3bet","vs SB 3bet","vs BB 3bet"]
-      }
-      // CO
-      if (this.selectedPosition === "CO") {
-        this.vsrfi = ['vs LJ RFI','vs HJ RFI']
-        this.vs3bet = ["vs BTN/SB 3bet","vs BB 3bet"]
-      }
-      // BTN
-      if (this.selectedPosition === "BTN") {
-        this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI"]
-        this.vs3bet = ["vs BB/SB 3bet"]
-      }
-      // SB
-      if (this.selectedPosition === "SB") {
-        this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI", "vs BTN RFI"]
-        this.vs3bet = ["vs BB 3bet"]
-      }
-      // BB
-      if (this.selectedPosition === "BB") {
-        this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI","vs BTN RFI","vs SB Limp","vs SB Raise",]
-        this.vs3bet = []
-      }
-    },
-    chooseSituation(situation) {
-      this.selectedSituation = situation
-      this.completeSituation = this.selectedPosition + ' ' + situation;
-    }
-  }
-
 };
 </script>
 
@@ -100,44 +47,4 @@ export default {
     height: 100vh;
     user-select: none;
   }
-</style>
-
-<style scoped>
-
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .chart-btns {
-    display: flex;
-    width: 330px;
-  }
-
-  .buttons-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .buttons {
-    cursor: pointer;
-    background-color: rgb(204, 16, 16);
-    color: white;
-    width: 100px;
-    height: 40px;
-    margin: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-  }
-
-  .title {
-    background-color: rgb(10, 114, 10);
-    text-align: center;
-    cursor: default;
-    color: white;
-  }
-
 </style>
