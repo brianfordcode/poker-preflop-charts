@@ -1,24 +1,12 @@
 <template>
 
-<h2
-  style="margin: 20px 0 20px 0;
-         text-align: center;"
->
-Preflop 6max Cash 100bb NLHE
-</h2>
+  <h2 style="margin: 20px 0 20px 0; color: white;">Preflop 6max Cash 100bb NLHE</h2>
 
-<div
-  class="title"
-  style="padding:5px;
-         margin-bottom:5px"
->
-{{ this.situation ? this.situation : 'Choose a Situation Below' }}
+  <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
 
-</div>
+  <chart :situation="situation"/>
 
-<chart :situation="situation"/>
-
-<buttons @change="handleSituation"/>
+  <buttons @change="handleSituation"/>
 
 </template>
 
@@ -38,7 +26,6 @@ export default {
   methods: {
     handleSituation(situation) {
       this.situation = situation
-    // console.log(situation)
     }
   }
 };
@@ -57,5 +44,14 @@ export default {
     align-items: center;
     height: 100vh;
     user-select: none;
+    background-color: rgb(34, 34, 34);
   }
+
+  .situation-title {
+    background-color: rgb(10, 114, 10);
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
 </style>
