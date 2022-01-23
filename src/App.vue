@@ -1,6 +1,10 @@
 <template>
 
-  <h2 style="margin: 20px 0 20px 0; color: white;">Preflop 6max Cash 100bb NLHE</h2>
+  <background/>
+
+  <settings/>
+
+  <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
 
   <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
 
@@ -13,11 +17,13 @@
 <script>
 import chart from "./components/chart.vue"
 import buttons from "./components/buttons.vue"
+import background from "./components/background.vue"
+import settings from "./components/settings.vue"
 
 
 export default {
   name: "App",
-  components: { chart, buttons },
+  components: { chart, buttons, background, settings },
   data() {
     return {
       situation: ''
@@ -35,6 +41,7 @@ export default {
   * {
     padding: 0;
     margin: 0;
+    /* background-color: rgb(34, 34, 34); */
   }
 
   #app {
@@ -44,7 +51,14 @@ export default {
     align-items: center;
     height: 100vh;
     user-select: none;
-    background-color: rgb(34, 34, 34);
+    /* background-color: rgb(34, 34, 34); */
+  }
+
+  .main-title {
+    font-size: 26px;
+    margin: 20px 0 20px 0;
+    color: white;
+    text-align: center;
   }
 
   .situation-title {

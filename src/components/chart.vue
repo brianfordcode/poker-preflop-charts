@@ -589,18 +589,12 @@ export default {
             };
         }
     },
-    watch: {
-        situation() {
-            // console.log(this.situation)
-         }
-    }
 }
 </script>
 
 <style scoped>
 
 .cell {
-    /* border: 1px solid black; */
     border-radius: 3px;
     height: 25px;
     width: 25px;
