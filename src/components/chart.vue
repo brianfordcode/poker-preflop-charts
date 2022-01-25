@@ -216,6 +216,20 @@ export default {
         },
         getCardClass(label) {
 
+            // const recs = this.recommendations[this.situation]
+
+            // const recomendationNames = Object.keys(recs)
+
+            // const classes = []
+
+            // recomendationNames.forEach(recomendationName => {
+            //     if (recs[recomendationName].includes(handLabel)) {
+            //         classes.push('red')
+            //     }
+            // })
+
+            // return classes.join(' ')
+    
             // LJ RFI
             if (this.situation === "LJ RFI") {
                 if (this.ljrfi.includes(label)) {

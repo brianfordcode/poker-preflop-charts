@@ -6,7 +6,7 @@
 
 <div
   class="main"
-  style="flex-direction: column;">
+  :style="`flex-direction: ${currentOrientation};`">
 
   <div>
     <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
@@ -36,16 +36,16 @@ export default {
   data() {
     return {
       situation: '',
-      currentOrientation: ''
+      currentOrientation: 'column'
     }
   },
   methods: {
     handleSituation(situation) {
       this.situation = situation
     },
-    handleOrientation() {
-      this.currentOrientation
-      console.log(this.currentOrientation)
+    handleOrientation(orientation) {
+      this.currentOrientation = orientation
+      // console.log(this.currentOrientation)
     }
   }
 };
@@ -64,12 +64,12 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
 
   .main {
     display: flex;
     align-items: center;
+    /* border: 1px solid blue; */
   }
 
   .main-title {

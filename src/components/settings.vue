@@ -51,17 +51,17 @@ export default {
     },
     methods: {
         emitOrientation() {
-            this.orientationRotate ? this.currentOrientation = 'row' : this.currentOrientation = 'column'
-            return this.currentOrientation
+            this.orientationRotate ? this.currentOrientation = 'column' : this.currentOrientation = 'row'
+            
             // console.log(this.currentOrientation)
+
+            this.$emit('change', this.currentOrientation)
+            
+            return this.currentOrientation
+            
+            
         }
     },
-    watch: {
-        emitOrientation() {
-            this.$emit('change', this.emitOrientation)
-        }
-    }
-// @mouseleave="showModal = false"
 }
 </script>
 
