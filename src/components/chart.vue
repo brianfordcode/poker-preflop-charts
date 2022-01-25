@@ -22,15 +22,19 @@
     </table>
 
     <!-- KEY -->
-    <div
-        class="key"
-    >
+    <div class="key">
         <div
             v-for="action in actions"
             :key="action"
             :class="[getColor(action, this.situation), showItem(action, this.situation)]"
         >
         {{action}}
+        </div>
+        <div
+            v-if="situation"
+            style="background-color: white"
+        >
+        Fold
         </div>
 
     </div>
@@ -211,6 +215,7 @@ export default {
             return `${holeCards}${suited}`
         },
         getCardClass(label) {
+
             // LJ RFI
             if (this.situation === "LJ RFI") {
                 if (this.ljrfi.includes(label)) {
@@ -650,10 +655,20 @@ export default {
                 return 'pink'
             }
         },
+
         showItem(action, situation) {
             if (!situation) {
                 return 'donotshow'
             }
+
+            // const rfi = ["LJ RFI", "HJ RFI", "CO RFI", "BTN RFI"]
+            // rfi.forEach(item => {
+            //         if (situation === item) {
+            //             console.log('true')
+            //             action != 'Raise' ? 'donotshow' : ''
+            //         }
+            // })
+
             // RFI
             if (situation === "LJ RFI" ||
                 situation === "HJ RFI" ||
@@ -671,7 +686,7 @@ export default {
                     action != 'Limp/Raise' &&
                     action != 'Limp/Call' &&
                     action != 'Limp/Fold') {
-                    return 'donotshow'
+                        return 'donotshow'
                 }
             }
             // HJ VS RFI
@@ -746,11 +761,8 @@ export default {
 
 .key {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 400px;
     font-size: 11px;
-    margin: 5px 0;
+    margin: 2px 0 5px 0;
 }
 
 .key div {

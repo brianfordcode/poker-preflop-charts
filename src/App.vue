@@ -2,19 +2,25 @@
 
   <background/>
 
-  <settings/>
+  <settings @change="handleOrientation"/>
 
-<div class="main">
+<div
+  class="main"
+  style="flex-direction: column;">
 
-  <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
+  <div>
+    <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
 
-  <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
+    <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
+    
+    <chart :situation="situation"/>
+  </div>
 
-  <chart :situation="situation"/>
-
+  
   <buttons @change="handleSituation"/>
 
 </div>
+
 </template>
 
 <script>
@@ -29,12 +35,17 @@ export default {
   components: { chart, buttons, background, settings },
   data() {
     return {
-      situation: ''
+      situation: '',
+      currentOrientation: ''
     }
   },
   methods: {
     handleSituation(situation) {
       this.situation = situation
+    },
+    handleOrientation() {
+      this.currentOrientation
+      console.log(this.currentOrientation)
     }
   }
 };
@@ -44,29 +55,26 @@ export default {
   * {
     padding: 0;
     margin: 0;
-    /* background-color: rgb(34, 34, 34); */
   }
 
   #app {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     height: 100vh;
     user-select: none;
-    /* background-color: rgb(34, 34, 34); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
   }
 
   .main {
-    transform: scale(1);
     display: flex;
-    flex-direction: column;
     align-items: center;
   }
 
   .main-title {
     font-size: 26px;
-    margin: 20px 0 20px 0;
+    margin-bottom: 20px;
     color: white;
     text-align: center;
   }
