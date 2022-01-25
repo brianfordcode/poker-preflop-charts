@@ -23,12 +23,6 @@
 </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style scoped>
 @keyframes move {
     100% {
@@ -65,7 +59,7 @@ export default {
     color: #0f0b50;
     top: 39%;
     left: 93%;
-    animation-duration: 48s;
+    animation-duration: 300s;
     animation-delay: -99s;
     transform-origin: -3vw -14vh;
     box-shadow: 60vmin 0 8.315077130925845vmin currentColor;
@@ -92,7 +86,7 @@ export default {
     color: #0f0b50;
     top: 47%;
     left: 37%;
-    animation-duration: 31s;
+    animation-duration: 300s;
     animation-delay: -117s;
     transform-origin: 5vw 7vh;
     box-shadow: 60vmin 0 8.184596372221069vmin currentColor;
@@ -101,7 +95,7 @@ export default {
     color: #c20505;
     top: 93%;
     left: 68%;
-    animation-duration: 53s;
+    animation-duration: 200s;
     animation-delay: -12s;
     transform-origin: -11vw 7vh;
     box-shadow: -60vmin 0 7.9937659028138786vmin currentColor;
@@ -143,7 +137,7 @@ export default {
     box-shadow: -60vmin 0 7.659805879291114vmin currentColor;
 }
 .background span:nth-child(9) {
-    color: #000000;
+    color: #1f1f1f;
     top: 92%;
     left: 11%;
     animation-duration: 134s;
@@ -161,7 +155,7 @@ export default {
     box-shadow: -60vmin 0 7.951564099960101vmin currentColor;
 }
 .background span:nth-child(11) {
-    color: #000000;
+    color: #181818;
     top: 62%;
     left: 78%;
     animation-duration: 117s;
@@ -197,7 +191,7 @@ export default {
     box-shadow: -60vmin 0 8.32566784830023vmin currentColor;
 }
 .background span:nth-child(15) {
-    color: #000000;
+    color: #141414;
     top: 60%;
     left: 76%;
     animation-duration: 303s;
@@ -209,7 +203,7 @@ export default {
     color: #0f0b50;
     top: 65%;
     left: 50%;
-    animation-duration: 14s;
+    animation-duration: 300s;
     animation-delay: -309s;
     transform-origin: -3vw -23vh;
     box-shadow: -60vmin 0 8.261910277170163vmin currentColor;
@@ -242,10 +236,10 @@ export default {
     box-shadow: 60vmin 0 8.423183517593182vmin currentColor;
 }
 .background span:nth-child(20) {
-    color: #000000;
+    color: #131313;
     top: 20%;
     left: 90%;
-    animation-duration: 9s;
+    animation-duration: 300s;
     animation-delay: -294s;
     transform-origin: -13vw 6vh;
     box-shadow: 60vmin 0 7.723704409368295vmin currentColor;
@@ -332,7 +326,7 @@ export default {
     box-shadow: -60vmin 0 7.706323837418921vmin currentColor;
 }
 .background span:nth-child(30) {
-    color: #000000;
+    color: #1d1d1d;
     top: 55%;
     left: 10%;
     animation-duration: 403s;
@@ -368,7 +362,7 @@ export default {
     box-shadow: -60vmin 0 7.809307513286785vmin currentColor;
 }
 .background span:nth-child(34) {
-    color: #000000;
+    color: #1b1b1b;
     top: 62%;
     left: 10%;
     animation-duration: 367s;
@@ -386,7 +380,7 @@ export default {
     box-shadow: 60vmin 0 8.049931584040872vmin currentColor;
 }
 .background span:nth-child(36) {
-    color: #000000;
+    color: #131313;
     top: 10%;
     left: 89%;
     animation-duration: 237s;
@@ -416,7 +410,7 @@ export default {
     color: #0f0b50;
     top: 5%;
     left: 30%;
-    animation-duration: 16s;
+    animation-duration: 300s;
     animation-delay: -264s;
     transform-origin: 12vw -12vh;
     box-shadow: -60vmin 0 7.795348011784247vmin currentColor;
@@ -467,7 +461,7 @@ export default {
     box-shadow: 60vmin 0 7.611907924548271vmin currentColor;
 }
 .background span:nth-child(45) {
-    color: #000000;
+    color: #161616;
     top: 13%;
     left: 64%;
     animation-duration: 449s;

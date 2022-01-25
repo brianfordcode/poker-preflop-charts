@@ -1,5 +1,6 @@
 <template>
 
+<div class="container">
     <img
         src="../assets/settings-gear.png"
         alt="gear-icon"
@@ -19,6 +20,9 @@
         <p class="credit">Created by: <a href="https://www.brianfordcode.com" target="_blank">Brian Ford</a></p>
 
     </div>
+</div>
+
+
 
 </template>
 
@@ -34,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+
+.container {
+    z-index: 10000;
+}
 
 img {
     position: absolute;

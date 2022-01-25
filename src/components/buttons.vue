@@ -112,6 +112,7 @@ export default {
       }
       // BB
       if (this.selectedPosition === "BB") {
+        this.selectedSituation = "vs LJ RFI"
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI","vs BTN RFI","vs SB Limp","vs SB Raise",]
         this.vs3bet = []
       }
@@ -150,7 +151,6 @@ export default {
   .buttons-container {
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
   }
 
   .buttons {

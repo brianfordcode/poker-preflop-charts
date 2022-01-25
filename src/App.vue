@@ -4,6 +4,8 @@
 
   <settings/>
 
+<div class="main">
+
   <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
 
   <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
@@ -12,6 +14,7 @@
 
   <buttons @change="handleSituation"/>
 
+</div>
 </template>
 
 <script>
@@ -46,12 +49,19 @@ export default {
 
   #app {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
     height: 100vh;
     user-select: none;
     /* background-color: rgb(34, 34, 34); */
+  }
+
+  .main {
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .main-title {
@@ -65,6 +75,7 @@ export default {
     background-color: rgb(10, 114, 10);
     color: white;
     padding: 5px;
+    text-align: center;
     margin-bottom: 5px;
   }
 
