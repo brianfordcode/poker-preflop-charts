@@ -24,20 +24,21 @@
 
     <!-- KEY -->
     <div class="key">
+        <!-- All keys -->
         <div
             v-for="action in actions"
             :key="action"
-            :class="[getColor(action, this.situation), showItem(action, this.situation)]"
+            :class="[getColor(action, this.situation), showKeyItem(action, this.situation)]"
         >
         {{action}}
         </div>
+        <!-- FOLD key -->
         <div
-            v-if="situation"
+            v-if="situation && situation != 'BB vs SB Limp'"
             style="background-color: white"
         >
         Fold
         </div>
-
     </div>
 
 
@@ -55,7 +56,7 @@ export default {
     data() {
         return {
             cards: "AKQJT98765432".split(''),
-            actions: ['Raise', '3Bet','Call', 'Raise/4Bet', 'Raise/Call', 'Raise/Fold', 'Limp/Raise', 'Limp/Call', 'Limp/Fold', '4Bet for Value', '4Bet as Bluff', 'Fold', '3Bet as Bluff'],
+            actions: ['Raise', '3Bet','Call', 'Raise/4Bet', 'Raise/Call', 'Raise/Fold', 'Limp/Raise', 'Limp/Call', 'Limp/Fold', '4Bet for Value', '4Bet as Bluff', '3Bet as Bluff', '3Bet for Value', 'Fold'],
             recommendations: {
                 // RFI
                 "LJ RFI": {
@@ -254,93 +255,48 @@ export default {
         },
 
         getColor(action, situation) {
-            
-            if (action === 'Raise' ||
-                action === '3Bet' || 
-                action === 'Raise/4Bet' ||
-                action === '4Bet for Value') {
-                    return 'red'
+            const colors = {
+                "Raise": 'red',
+                "3Bet": 'red',
+                "Raise/4Bet": 'red',
+                "4Bet for Value": 'red',
+                "Raise/Call": 'blue',
+                "4Bet as Bluff": 'blue',
+                "3Bet as Bluff": 'blue',
+                "Call": 'green',
+                "Fold": 'grey',
+                "Raise/Fold": 'green',
+                "Limp/Raise": 'grey',
+                "Limp/Call": 'yellow',
+                "Limp/Fold": 'pink',
+                "3Bet for Value": 'red'
             }
-            if (
-                action === 'Raise/Call' ||
-                action === "4Bet as Bluff" ||
-                action === "3Bet as Bluff") {
-                    return 'blue'
+            if (typeof colors[action] === 'string') {
+                return colors[action]
             }
-            if (action === 'Call') {
-                if (situation === 'LJ vs HJ 3bet' ||
-                    situation === "LJ vs CO 3bet" ||
-                    situation === "LJ vs BTN 3bet" ||
-                    situation === "LJ vs SB 3bet" ||
-                    situation === "LJ vs BB 3bet" ||
-                    situation === "HJ vs CO 3bet" ||
-                    situation === "HJ vs BTN 3bet" ||
-                    situation === "HJ vs SB 3bet" ||
-                    situation === "HJ vs BB 3bet" ||
-                    situation === "CO vs BTN/SB 3bet" ||
-                    situation === "CO vs BB 3bet" ||
-                    situation === "BTN vs SB/BB 3bet" ||
-                    situation === "SB RFI vs BB 3bet" ||
-                    situation === "SB Limp vs BB Raise" ||
-                    situation === "BTN vs HJ RFI" ||
-                    situation === "BTN vs LJ RFI" ||
-                    situation === "BTN vs CO RFI") {
-                        return 'green'
-                } else {
-                    return 'blue'
-                }
-            }
-            if (action === 'Raise/Fold' ) {
-                if (situation != "LJ vs HJ 3bet") {
-                    return 'green'
-                } else {
-                    return 'blue'
-                }
-            }
-            if (action === 'Limp/Raise' || action === 'Fold') {
-                if (situation != 'LJ RFI' ||
-                    situation != 'HJ RFI' ||
-                    situation != 'CO RFI' ||
-                    situation != 'BTN RFI' ||
-                    situation != ' RFI' ||
-                    situation != 'LJ RFI') {
-                    return 'grey'
-                } else {
-                    return 'white'
-                }
-                
-            }
-            if (action === 'Limp/Call') {
-                return 'yellow'
-            }
-            if (action === 'Limp/Fold') {
-                return 'pink'
+            else if (colors[action]) {
+                return colors[action][situation]
             }
         },
 
-        showItem(action, situation) {
+        showKeyItem(action, situation) {
+            // if no situation chosen
             if (!situation) {
                 return 'donotshow'
             }
-
-            // const rfi = ["LJ RFI", "HJ RFI", "CO RFI", "BTN RFI"]
-            // rfi.forEach(item => {
-            //         if (situation === item) {
-            //             console.log('true')
-            //             action != 'Raise' ? 'donotshow' : ''
-            //         }
-            // })
-
             // RFI
-            if (situation === "LJ RFI" ||
-                situation === "HJ RFI" ||
-                situation === "CO RFI" ||
-                situation === "BTN RFI") {
+            if (
+                [
+                "LJ RFI",
+                "HJ RFI",
+                "CO RFI",
+                "BTN RFI"
+                ].includes(situation)) {
                     if (action != 'Raise') {
                         return 'donotshow'
                     }
-            }
-            // SB RFI AND VS RFI
+                }
+            // SB RFI
             if (situation === "SB RFI") {
                 if (action != 'Raise/4Bet' &&
                     action != 'Raise/Call' &&
@@ -351,60 +307,67 @@ export default {
                         return 'donotshow'
                 }
             }
-            // HJ VS RFI
-            if (situation === "HJ vs LJ RFI" ||
-                situation === "SB vs LJ RFI" ||
-                situation === "SB vs HJ RFI" ||
-                situation === "SB vs CO RFI" ||
-                situation === "SB vs BTN RFI") {
+            // HJ, CO, SB VS RFI
+            if ([
+            "HJ vs LJ RFI",
+            "CO vs LJ RFI",
+            "CO vs HJ RFI",
+            "SB vs LJ RFI",
+            "SB vs HJ RFI",
+            "SB vs CO RFI",
+            "SB vs BTN RFI"
+            ].includes(situation)) {
                 if (action !='3Bet') {
                     return 'donotshow'
                 }
             }
-            // CO VS RFI
-            if (situation === "CO vs LJ RFI" ||
-                situation === "CO vs HJ RFI") {
-                if (action !='3Bet') {
-                    return 'donotshow'
-                }
-            }
-            // BTN VS RFI
-            if (situation === "BTN vs LJ RFI" ||
-                situation === "BTN vs HJ RFI" ||
-                situation === "BTN vs CO RFI" ||
-                situation === "BB vs LJ RFI" ||
-                situation === "BB vs HJ RFI" ||
-                situation === "BB vs CO RFI" ||
-                situation === "BB vs BTN RFI" ||
-                situation === "BB vs SB Limp" ||
-                situation === "BB vs SB Raise") {
+            // BTN, BB VS RFI
+            if ([
+            "BTN vs LJ RFI",
+            "BTN vs HJ RFI",
+            "BTN vs CO RFI",
+            "BB vs LJ RFI",
+            "BB vs HJ RFI",
+            "BB vs CO RFI",
+            "BB vs BTN RFI",
+            "BB vs SB Limp",
+            "BB vs SB Raise"
+            ].includes(situation)) {
                 if (action !='3Bet' && action != 'Call') {
                     return 'donotshow'
                 }
             }
             // 3BET
-            if (situation === "LJ vs HJ 3bet" ||
-                situation === "LJ vs CO 3bet" ||
-                situation === "LJ vs BTN 3bet" ||
-                situation === "LJ vs SB 3bet" ||
-                situation === "LJ vs BB 3bet" ||
-                situation === "HJ vs CO 3bet" ||
-                situation === "HJ vs BTN 3bet" ||
-                situation === "HJ vs SB 3bet" ||
-                situation === "HJ vs BB 3bet" ||
-                situation === "CO vs BTN/SB 3bet" ||
-                situation === "CO vs BB 3bet" ||
-                situation === "CO vs BB 3bet" ||
-                situation === "BTN vs SB/BB 3bet" ||
-                situation === "SB RFI vs BB 3bet" ||
-                situation === "SB Limp vs BB Raise") {
+            if ([
+                "LJ vs HJ 3bet",
+                "LJ vs CO 3bet",
+                "LJ vs BTN 3bet",
+                "LJ vs SB 3bet",
+                "LJ vs BB 3bet",
+                "HJ vs CO 3bet",
+                "HJ vs BTN 3bet",
+                "HJ vs SB 3bet",
+                "HJ vs BB 3bet",
+                "CO vs BTN/SB 3bet",
+                "CO vs BB 3bet",
+                "BTN vs SB/BB 3bet",
+                "SB RFI vs BB 3bet"
+                ].includes(situation)) {
                     if (action != '4Bet for Value' &&
                         action != '4Bet as Bluff' &&
                         action != 'Call' &&
-                        action != 'Fold' &&
-                        action != "3Bet as Bluff") {
+                        action != 'Fold') {
                             return 'donotshow'
                     }
+            }
+            // SB Limp vs BB Raise
+            if (situation === "SB Limp vs BB Raise") {
+                if (action != "3Bet as Bluff" &&
+                    action != "Call" &&
+                    action != "3Bet for Value" &&
+                    action != "Fold") {
+                    return 'donotshow'
+                }
             }
         }
     },
