@@ -27,6 +27,7 @@
                     />
                 </div>
             </div>
+            
             <p class="credit" style="font-size: 12px;">
                 Created by: 
                 <a
@@ -45,7 +46,8 @@ export default {
         return {
             showModal: false,
             orientationRotate: true,
-            currentOrientation: ''
+            currentOrientation: '',
+            size: 0
         }
     },
     mounted() {
@@ -59,8 +61,8 @@ export default {
             this.orientationRotate ? this.currentOrientation = 'column' : this.currentOrientation = 'row'
             this.$emit('change', this.currentOrientation)
             return this.currentOrientation
-        }
-    },
+        },
+    }
 }
 </script>
 
@@ -93,7 +95,7 @@ export default {
         align-items: flex-start;
         right: 20px;
         top: 50px;
-        height: 250px;
+        height: 150px;
         width: 200px;
         border-radius: 10px;
         background-color: rgba(0,0,0,0.95);
@@ -109,6 +111,14 @@ export default {
 
     p {
         color: white;
+    }
+
+    .size-select > * {
+        cursor: pointer;
+        color: black;
+        background-color: white;
+        text-align: center;
+        margin: 5px 0;
     }
 
     .credit {

@@ -16,7 +16,7 @@
                 :style="[this.selectedPosition === position ? 'background-color: rgb(12, 12, 167)' : '']"
                 style="font-size: 30px;"
                 @click="choosePosition(position)"
-                v-for="(position) in rfipos"
+                v-for="position in rfipos"
                 :key="position"
             >
             {{ position }}
@@ -75,7 +75,7 @@ export default {
       selectedPosition: '',
       selectedSituation: '',
       highlight: 'rgb(12, 12, 167)',
-      rfipos: ["LJ","HJ","CO","BTN","SB","BB",],
+      rfipos: ["LJ","HJ","CO","BTN","SB","BB"],
       vsrfi: [],
       vs3bet: []
     }
@@ -87,32 +87,32 @@ export default {
       this.selectedSituation = this.selectedPosition != "BB" ? "RFI" : "";
 
       // LJ
-      if (this.selectedPosition === "LJ") {
+      if (position === "LJ") {
         this.vsrfi = [];
         this.vs3bet = ["vs HJ 3bet", "vs CO 3bet", "vs BTN 3bet", "vs SB 3bet", "vs BB 3bet"]
       }
       // HJ
-      if (this.selectedPosition === "HJ") {
+      if (position === "HJ") {
         this.vsrfi = ['vs LJ RFI'];
         this.vs3bet = ["vs CO 3bet","vs BTN 3bet","vs SB 3bet","vs BB 3bet"]
       }
       // CO
-      if (this.selectedPosition === "CO") {
+      if (position === "CO") {
         this.vsrfi = ['vs LJ RFI','vs HJ RFI']
         this.vs3bet = ["vs BTN/SB 3bet","vs BB 3bet"]
       }
       // BTN
-      if (this.selectedPosition === "BTN") {
+      if (position === "BTN") {
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI"]
         this.vs3bet = ["vs SB/BB 3bet"]
       }
       // SB
-      if (this.selectedPosition === "SB") {
+      if (position === "SB") {
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI", "vs BTN RFI"]
         this.vs3bet = ["RFI vs BB 3bet", "Limp vs BB Raise"]
       }
       // BB
-      if (this.selectedPosition === "BB") {
+      if (position === "BB") {
         this.selectedSituation = "vs LJ RFI"
         this.vsrfi = ["vs LJ RFI","vs HJ RFI","vs CO RFI","vs BTN RFI","vs SB Limp","vs SB Raise",]
         this.vs3bet = []

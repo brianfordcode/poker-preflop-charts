@@ -1,13 +1,13 @@
 <template>
 
+
   <div class="main-app">
-
-    
-
-    <settings @change="handleOrientation"/>
+    <!-- SETTINGS -->
+    <settings
+      @change="handleOrientation"
+    />
     <!-- MAIN TITLE -->
     <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
-
     <div
       class="title-chart"
       :style="`flex-direction: ${currentOrientation};`"
@@ -23,6 +23,7 @@
     </div>
   </div>
 
+  <!-- BACKGROUND -->
   <background/>
 
 </template>
@@ -40,7 +41,8 @@ export default {
   data() {
     return {
       situation: '',
-      currentOrientation: 'column'
+      currentOrientation: 'column',
+      currentSize: 0
     }
   },
   methods: {
@@ -48,8 +50,7 @@ export default {
       this.situation = situation
     },
     handleOrientation(orientation) {
-      this.currentOrientation = orientation
-      // console.log(this.currentOrientation)
+      this.currentOrientation = orientation;
     }
   }
 };
@@ -68,11 +69,11 @@ export default {
   }
 
   .main-app {
-    /* border: 1px solid blue; */
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
 
   .title-chart {
