@@ -4,12 +4,14 @@
 
   <settings @change="handleOrientation"/>
 
+  <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
+
 <div
   class="main"
   :style="`flex-direction: ${currentOrientation};`">
 
   <div>
-    <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
+    
 
     <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
     
