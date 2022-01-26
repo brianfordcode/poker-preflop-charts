@@ -28,7 +28,10 @@
         <div
             v-for="action in actions"
             :key="action"
-            :class="[getColor(action, this.situation), showKeyItem(action, this.situation)]"
+            :class="[
+                    getColor(action, this.situation),
+                    showKeyItem(action, this.situation)
+                    ]"
         >
         {{action}}
         </div>
@@ -253,7 +256,6 @@ export default {
             })
             return classes.join(' ')
         },
-
         getColor(action, situation) {
             const colors = {
                 "Raise": 'red',
@@ -278,12 +280,9 @@ export default {
                 return colors[action][situation]
             }
         },
-
         showKeyItem(action, situation) {
             // if no situation chosen
-            if (!situation) {
-                return 'donotshow'
-            }
+            if (!situation) {return 'donotshow'}
             // RFI
             if (
                 [
@@ -292,9 +291,7 @@ export default {
                 "CO RFI",
                 "BTN RFI"
                 ].includes(situation)) {
-                    if (action != 'Raise') {
-                        return 'donotshow'
-                    }
+                    if (action != 'Raise') {return 'donotshow'}
                 }
             // SB RFI
             if (situation === "SB RFI") {
@@ -303,8 +300,15 @@ export default {
                     action != 'Raise/Fold' &&
                     action != 'Limp/Raise' &&
                     action != 'Limp/Call' &&
-                    action != 'Limp/Fold') {
-                        return 'donotshow'
+                    action != 'Limp/Fold') {return 'donotshow'}
+            }
+            // SB Limp vs BB Raise
+            if (situation === "SB Limp vs BB Raise") {
+                if (action != "3Bet as Bluff" &&
+                    action != "Call" &&
+                    action != "3Bet for Value" &&
+                    action != "Fold") {
+                    return 'donotshow'
                 }
             }
             // HJ, CO, SB VS RFI
@@ -317,9 +321,7 @@ export default {
             "SB vs CO RFI",
             "SB vs BTN RFI"
             ].includes(situation)) {
-                if (action !='3Bet') {
-                    return 'donotshow'
-                }
+                if (action !='3Bet') {return 'donotshow'}
             }
             // BTN, BB VS RFI
             if ([
@@ -333,9 +335,7 @@ export default {
             "BB vs SB Limp",
             "BB vs SB Raise"
             ].includes(situation)) {
-                if (action !='3Bet' && action != 'Call') {
-                    return 'donotshow'
-                }
+                if (action !='3Bet' && action != 'Call') {return 'donotshow'}
             }
             // 3BET
             if ([
@@ -359,15 +359,6 @@ export default {
                         action != 'Fold') {
                             return 'donotshow'
                     }
-            }
-            // SB Limp vs BB Raise
-            if (situation === "SB Limp vs BB Raise") {
-                if (action != "3Bet as Bluff" &&
-                    action != "Call" &&
-                    action != "3Bet for Value" &&
-                    action != "Fold") {
-                    return 'donotshow'
-                }
             }
         }
     },

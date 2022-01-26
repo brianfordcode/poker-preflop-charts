@@ -27,6 +27,7 @@
             <div class="buttons-container">
             <span
                 class="title buttons"
+                style="font-size: 24px;"
                 v-if="this.vsrfi.length"
             >
             vs RFI

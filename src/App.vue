@@ -1,27 +1,29 @@
 <template>
 
-  <background/>
+  <div class="main-app">
 
-  <settings @change="handleOrientation"/>
-
-  <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
-
-<div
-  class="main"
-  :style="`flex-direction: ${currentOrientation};`">
-
-  <div>
     
 
-    <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
-    
-    <chart :situation="situation"/>
+    <settings @change="handleOrientation"/>
+    <!-- MAIN TITLE -->
+    <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
+
+    <div
+      class="title-chart"
+      :style="`flex-direction: ${currentOrientation};`"
+    >
+      <div>
+        <!-- SITUATION TITLE -->
+        <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
+        <!-- CHART -->
+        <chart :situation="situation"/>
+      </div>
+      <!-- BUTTONS -->
+      <buttons @change="handleSituation"/>
+    </div>
   </div>
 
-  
-  <buttons @change="handleSituation"/>
-
-</div>
+  <background/>
 
 </template>
 
@@ -63,15 +65,19 @@ export default {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     height: 100vh;
     user-select: none;
+  }
+
+  .main-app {
+    /* border: 1px solid blue; */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .main {
+  .title-chart {
     display: flex;
     align-items: center;
-    /* border: 1px solid blue; */
   }
 
   .main-title {
