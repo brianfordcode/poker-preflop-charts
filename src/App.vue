@@ -1,6 +1,5 @@
 <template>
 
-
   <div class="main-app">
     <!-- SETTINGS -->
     <settings
@@ -14,7 +13,9 @@
     >
       <div>
         <!-- SITUATION TITLE -->
-        <p class="situation-title">{{ this.situation ? this.situation : 'Choose a Situation Below' }}</p>
+        <p class="situation-title">
+          {{ this.situation ? this.situation : 'Choose a Situation Below' }}
+        </p>
         <!-- CHART -->
         <chart :situation="situation"/>
       </div>
@@ -60,14 +61,15 @@ export default {
   * {
     padding: 0;
     margin: 0;
+    /* background-color: rgb(36, 31, 31); */
   }
 
   #app {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     height: 100vh;
     user-select: none;
+    position: relative;
   }
-
   .main-app {
     height: 100vh;
     display: flex;

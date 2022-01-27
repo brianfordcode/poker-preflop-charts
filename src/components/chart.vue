@@ -37,10 +37,10 @@
         </div>
         <!-- FOLD key -->
         <div
-            v-if="situation && situation != 'BB vs SB Limp'"
+            v-if="situation != 'BB vs SB Limp'"
             style="background-color: white"
         >
-        Fold
+        {{situation ? 'Fold' : 'Key'}}
         </div>
     </div>
 
