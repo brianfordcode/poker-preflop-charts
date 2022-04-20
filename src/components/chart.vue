@@ -58,7 +58,7 @@ export default {
     data() {
         return {
             cards: "AKQJT98765432".split(''),
-            actions: ['Raise', '3Bet','Call', 'Raise/4Bet', 'Raise/Call', 'Raise/Fold', 'Limp/Raise', 'Limp/Call', 'Limp/Fold', '4Bet for Value', '4Bet as Bluff', '3Bet as Bluff', '3Bet for Value', 'Fold'],
+            actions: ['Raise', '3Bet','Call', 'Raise/4Bet', 'Raise/Call', 'Raise/Fold', 'Limp/Raise', 'Limp/Call', 'Limp/Fold', '4Bet for Value', '4Bet as Bluff', '3Bet as Bluff', '3Bet for Value'],
             recommendations: {
                 // RFI
                 "LJ RFI": {
@@ -87,31 +87,26 @@ export default {
                     fourBetForValue: "AA AKs AKo KK QQ",
                     fourBetAsABluff: "A9s A8s A5s A4s A3s A2s KQo AJo",
                     call: "AQs AJs ATs KQs KJs KTs AQo QJs QTs JJ JTs TT T9s 99 98s 88 77",
-                    fold: "A7s A6s K9s Q9s KJo J9s ATo 87s 76s 66 65s 55 44"
                 },
                 "LJ vs CO 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A5s A4s A3s A2s KQo AJo",
                     call: "AQs AJs ATs KQs KJs KTs AQo QJs QTs JTs TT T9s 99 98s 88 77 66",
-                    fold: "A7s A6s K9s Q9s KJo J9s ATo 87s 76s 65s 55 44"
                 },
                 "LJ vs BTN 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A7s A5s A5s A4s A3s A2s KQo AJo 76s",
                     call: "AQs AJs ATs KQs KJs KTs AQo QJs QTs JTs TT T9s 99 98s 88 87s 77 66 55",
-                    fold: "A6s K9s Q9s KJo J9s ATo 65s 44"
                 },
                 "LJ vs SB 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A7s A6s A5s A4s A3s A2s ATo KJo",
                     call: "AQs AJs ATs KQs KJs KTs AQo KQo QJs QTs AJo JTs J9s TT T9s 99 98s 88 87s 77 76s 66 55",
-                    fold: "K9s Q9s 65s 44"
                 },
                 "LJ vs BB 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A7s A6s A5s A4s A3s A2s AJo KQo",
                     call: "AQs AJs ATs KQs KJs KTs AQo QJs QTs JTs TT T9s 99 98s 88 87s 77 76s 66 55 44",
-                    fold: "K9s Q9s KJo J9s ATo 65s"
                 },
                 // HJ vs RFI
                 "HJ vs LJ RFI": {
@@ -128,19 +123,16 @@ export default {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A7s A6s A5s A4s A3s A2s KJo ATo 76s 65s 54s",
                     call: "AQs AJs ATs KQs KJs KTs K9s AQo KQo QJs QTs Q9s AJo JTs J9s TT T9s 99 98s 88 87s 77 66 55 44",
-                    fold: "K8s QJo T8s 97s 65s 54s 33 22"
                 },
                 "HJ vs SB 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A7s A6s A5s A4s A3s A2s KJo ATo",
                     call: "AQs AJs ATs KQs KJs KTs K9s AQo KQo QJs QTs Q9s AJo JTs J9s TT T9s 99 98s 88 87s 77 76s 66 55 44",
-                    fold: "K8s QJo T8s 97s 65s 54s 33 22"
                 },
                 "HJ vs BB 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ",
                     fourBetAsABluff: "A9s A8s A7s A6s A5s A4s A3s A2s KQo AJo",
                     call: "AQs AJs ATs KQs KJs KTs AQo QJs QTs JTs TT T9s 99 98s 88 87s 77 76s 66 55 44",
-                    fold: "K9s K8s Q9s KJo QJo J9s ATo T8s 97s 65s 54s 33 22"
                 },
                 // CO vs RFI
                 "CO vs LJ RFI": {
@@ -154,13 +146,11 @@ export default {
                     fourBetForValue: "AA AKs AKo KK QQ JJ TT",
                     fourBetAsABluff: " A8s A7s A6s A4s A3s A2s KJo ATo 97s 86s 75s 54s",
                     call: "AQs AJs ATs A9s A5s KQs KJs KTs K9s AQo KQo QJs QTs Q9s AJo JTs J9s T9s T8s 99 98s 88 87s 77 76s 66 65s 55 44",
-                    fold: "K8s K7s Q8s QJo J8s KTo QTo JTo A9o 64s 43s 33 22"
                 },
                 "CO vs BB 3bet": {
                     fourBetForValue: "AA AKs AKo KK QQ JJ TT",
                     fourBetAsABluff: "A8s A4s A3s A2s KJo ATo T8s 97s 65s 54s",
                     call: "AQs AJs ATs A9s A5s KQs KJs KTs K9s AQo KQo QJs QTs Q9s AJo JTs J9s T9s 99 98s 88 87s 77 76s 66 55 44",
-                    fold: "A7s A6s K8s K7s Q8s QJo J8s KTo QTo JTo A9o 86s 75s 64s 43s 33 22"
                 },
                 // BTN
                 "BTN vs LJ RFI": {
@@ -180,7 +170,6 @@ export default {
                     fourBetForValue: "AA AKs AQs AJs AKo KK AQo QQ JJ TT 99",
                     fourBetAsABluff: "K6s K5s K4s Q7s J7s QTo JTo K9o A8o 86s 75s 64s A5o 54s A4o 43s A3o",
                     call: "ATs A9s A8s A7s A6s A5s A4s A3s A2s KQs KJs KTs K9s K8s K7s KQo QJs QTs Q9s Q8s AJo KJo QJo JTs J9s J8s ATo KTo T9s T8s T7s A9o 98s 97s 88 87s 77 76s 66 65s 55 44 33 22",
-                    fold: "K3s K2s Q6s Q5s Q4s Q3s Q2s J6s T6s Q9o J9o T9o 96s K8o Q8o J8o T8o 98o 85s A7o K7o 97o 87o 74s A6o 76o 53s 32s A2o"
                 },
                 // SB
                 "SB vs LJ RFI": {
@@ -200,14 +189,12 @@ export default {
                     fourBetForValue: "AA AKs AQs AJs AKo KK AQo QQ JJ",
                     fourBetAsABluff: "J4s Q5o Q4o K3o K2o ",
                     call: "ATs KQs KJs KQo QJs AJo KJo ATo TT 99 95s 88 85s 74s 43s",
-                    fold: "J3s J2s T5s T4s 94s 84s J6o T6o 96o 86o 63s 53s Q3o Q2o"
                 },
                 // SB Limp vs BB Raise
                 "SB Limp vs BB Raise": {
                     fourBetForValue: "AA AKs AQs AJs ATs AKo KK KQs KJs AQo KQo QQ QJs AJo KJo JJ ATo TT 99 88",
                     threeBetAsABluff: "Q7o K6o K5o A3o A2o",
                     call: "A9s A8s A7s A6s A5s A4s A3s A2s KTs K9s K8s K7s K6s K5s K4s K3s K2s QTs Q9s Q9s Q8s Q7s Q6s Q5s Q4s Q3s Q2s QJo JTs J9s J8s J7s J6s J5s J4s J3s J2s KTo QTo JTo J9s J8s J7s J6s J5s KTo Qto JTo T9s T8s T7s T6s KTo QTo JTo T9s T8s T7s T6s KTo QTo JTo T9s T8s T7s T6s A9o K9o Q9o J9o T9o 98s 97s 96s A8o K8o Q8o J8o T8o 98o 87s 86s A7o K7o 97o 87o 77 76s 75s A6o 76o 66 65s 64s A5o 55 54s A4o 44 33 32s 22",
-                    fold: "J7o T7o Q6o 65o K4o"
                 },
                 // BB
                 "BB vs LJ RFI": {
@@ -265,7 +252,6 @@ export default {
                 "4Bet as Bluff": 'blue',
                 "3Bet as Bluff": 'blue',
                 "Call": 'green',
-                "Fold": 'grey',
                 "Raise/Fold": 'green',
                 "Limp/Raise": 'grey',
                 "Limp/Call": 'yellow',
