@@ -2,9 +2,7 @@
 
   <div class="main-app">
     <!-- SETTINGS -->
-    <settings
-      @change="handleOrientation"
-    />
+    <!-- <settings @change="handleOrientation"/> -->
     <!-- MAIN TITLE -->
     <p class="main-title">Preflop 6max Cash 100bb NLHE</p>
     <div
@@ -70,7 +68,9 @@ export default {
     user-select: none;
     position: relative;
   }
+
   .main-app {
+    /* width: 200px; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -84,7 +84,8 @@ export default {
   }
 
   .main-title {
-    font-size: 26px;
+    font-size: 24px;
+    margin-top: 20px;
     margin-bottom: 20px;
     color: white;
     text-align: center;

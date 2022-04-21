@@ -1,6 +1,6 @@
 <template>
 
-    <table cellspacing="5" :key="situation">
+    <table cellspacing="5" :key="situation" class="chart">
         <tbody>
             <tr 
                 class="row"
@@ -352,11 +352,17 @@ export default {
 
 <style scoped>
 
+.chart {
+    /* border: 1px solid; */
+    /* height: auto; */
+    /* position: relative; */
+}
+
 .hand {
     border-radius: 3px;
-    height: 25px;
-    width: 25px;
-    font-size: 14px;
+    height: 20px;
+    width: 20px;
+    font-size: 12px;
     text-align: center;
     background-color: white;
 }
@@ -395,8 +401,7 @@ export default {
 }
 /* GREY */
 .grey,
-.limpAndRaise,
-.fold {
+.limpAndRaise {
     background-color: rgb(116, 116, 116);
     color: white;
 }

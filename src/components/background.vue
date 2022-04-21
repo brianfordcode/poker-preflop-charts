@@ -34,7 +34,7 @@
     position: absolute;
     z-index: -1000;
     width: 100vw;
-    height:100%;
+    height:100vh;
     top: 0;
     left: 0;
     background: #1a4422;
